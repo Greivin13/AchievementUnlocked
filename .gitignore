@@ -1,4 +1,7 @@
 # Logs
+.env
+.DS_Store
+
 logs
 *.log
 npm-debug.log*
