@@ -1,14 +1,30 @@
-var express = require('express');
-var app = express();
-var axios = require('axios');
-require('dotenv').config(); // Load environment variables
+const path = require('path');
+const express = require('express');
+var session = require('express-session');
+const routes = require('./controllers');
+const sequelize = require('./config/connection.js');
 
 app.set('port', process.env.PORT || 3000);
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: true }
+}));
+
+app.set('view engine', 'handlebars');
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Routes
+app.use(routes);
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
 });
 
 // Function to retrieve the Steam API key from the environment variables
