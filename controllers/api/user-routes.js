@@ -46,7 +46,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/sign-up", (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
