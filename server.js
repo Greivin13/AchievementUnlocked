@@ -12,9 +12,9 @@ app.use(function(req, res, next) {
 });
 
 // Function to retrieve the Steam API key from the environment variables
-// function getSteamApiKey() {
-// //   return process.env.STEAM_API_KEY;
-// }
+function getSteamApiKey() {
+   return process.env.STEAM_API_KEY;
+}
 
 // Serve static files from the public directory
 app.use(express.static('views'));
@@ -26,7 +26,7 @@ app.get('/getplayersummary', function(req, res) {
   for (var p in req.query) {
     qParams.push({'name':p, 'value':req.query[p]})
   }
-  var url = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=FB187F8741A7CDD527A0E02C1A6783FB&steamids=76561198054586238' + qParams[0].name;
+  var url = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + getSteamApiKey() + '&steamids=76561198054586238' + qParams[0].name;
   axios.get(url)
     .then(function(response) {
       console.log(response.data);
