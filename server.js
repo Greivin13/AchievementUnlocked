@@ -4,8 +4,9 @@ var session = require("express-session");
 const routes = require("./controllers");
 const sequelize = require("./config/connection.js");
 const exphbs = require("express-handlebars");
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.set('port', process.env.PORT || 3000);
 
 app.use(
   session({
@@ -76,7 +77,7 @@ app.use(function(err, req, res, next){
   res.send('500 - Server Error');
 });
 
-app.listen(app.get('port'), function(){
-  console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
+app.listen(app.get('PORT'), function(){
+  console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.');
 });
 
