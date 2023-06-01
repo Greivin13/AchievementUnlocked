@@ -12,19 +12,16 @@ class User extends Model {
 // Create tables for user creds
 User.init(
     {
-        // define id
         id: {
           type: DataTypes.INTEGER,
           allowNull: false,
           primaryKey: true,
           autoIncrement: true
         },
-        // define username
         username: {
           type: DataTypes.STRING,
           allowNull: false
         },
-        // define email
         email: {
           type: DataTypes.STRING,
           allowNull: false,
@@ -33,7 +30,6 @@ User.init(
             isEmail: true
           }
         },
-        // define password
         password: {
           type: DataTypes.STRING,
           allowNull: false,
