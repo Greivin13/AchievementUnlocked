@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Post, User, Comment } = require("../models");
+const scripts = [{ script: "../assets/js/login.js" }];
 
 router.get("/", (req, res) => {
   console.log("New Request Recieved!");
@@ -73,7 +74,15 @@ router.get("/login", (req, res) => {
     return;
   }
 
-  res.render("login");
+  res.render("login", { scripts: scripts });
+});
+router.get("/sign-up", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+
+  res.render("sign-up", { title: "Sign-up", scripts: scripts });
 });
 
 module.exports = router;
