@@ -56,3 +56,8 @@ $("#signupBtn").click(function (e) {
   e.preventDefault();
   document.location.replace("/sign-up");
 });
+
+$("#backToLoginBtn").click(function (e) {
+  e.preventDefault();
+  document.location.replace("/login");
+});

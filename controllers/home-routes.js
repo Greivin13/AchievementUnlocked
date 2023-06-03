@@ -1,7 +1,13 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { User, Post, Review, Comment, revComment } = require("../models");
-const scripts = [{ script: "../assets/js/login.js" }];
+const scripts = [
+  { script: "../assets/js/login.js" },
+  { script: "../assets/js/logout.js" },
+  { script: "../assets/js/index.js" },
+  { script: "../assets/js/comment.js" },
+  { script: "../assets/js/add-post.js" },
+];
 
 router.get("/", (req, res) => {
   console.log("New Request Recieved!");
@@ -24,6 +30,7 @@ router.get("/", (req, res) => {
       res.render("homepage", {
         posts,
         loggedIn: req.session.loggedIn,
+        scripts: scripts,
       });
     })
     .catch((err) => {
@@ -68,7 +75,13 @@ router.get("/Profile", (req, res) => {
     include: [
       {
         model: revComment,
-        attributes: ["id", "revComment_text", "review_id", "user_id", "created_at"],
+        attributes: [
+          "id",
+          "revComment_text",
+          "review_id",
+          "user_id",
+          "created_at",
+        ],
         include: {
           model: User,
           attributes: ["username"],
@@ -140,7 +153,10 @@ router.get("/sign-up", (req, res) => {
     return;
   }
 
-  res.render("sign-up", { title: "Sign-up", scripts: scripts });
+  res.render("sign-up", {
+    title: "Sign-up",
+    scripts: scripts,
+  });
 });
 
 module.exports = router;
