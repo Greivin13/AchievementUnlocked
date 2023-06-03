@@ -32,7 +32,7 @@ app.use(routes);
 
 // FIXME: CHANGE TO FALSE LATER
 sequelize.sync({ force: true }).then(() => {
-  app.listen(PORT, () => console.log("Now listening"));
+  app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
 });
 
 // Function to retrieve the Steam API key from the environment variables
