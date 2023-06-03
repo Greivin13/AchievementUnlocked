@@ -4,6 +4,7 @@ const session = require("express-session");
 const routes = require("./controllers");
 const sequelize = require("./config/connection.js");
 const exphbs = require("express-handlebars");
+const router = require("express").Router();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -32,5 +33,18 @@ app.use(routes);
 
 // FIXME: CHANGE TO FALSE LATER
 sequelize.sync({ force: true }).then(() => {
-  app.listen(PORT, () => console.log("Now listening"));
+  app.listen(PORT, () =>
+    console.log(`Now listening\nhttp://localhost:${PORT}`)
+  );
+});
+
+app.get("/steamData", async (request, response) => {
+  const requestParam = request.params.steamID;
+  // const playerDataRequest = requestParam;
+  const queryUrl = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.steamkey}&steamids=${process.env.rinSteam64ID}`;
+  const fetch_response = await fetch(queryUrl);
+  const playerData = await fetch_response.json();
+  response.json(playerData);
+  // console.log(res.json(playerData));
+  // res.render("homepage", playerData);
 });
