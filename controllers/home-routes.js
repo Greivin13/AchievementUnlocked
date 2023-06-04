@@ -8,6 +8,8 @@ const scripts = [
   { script: "../assets/js/index.js" },
   { script: "../assets/js/comment.js" },
   { script: "../assets/js/add-post.js" },
+  { script: "../assets/js/homepage.js" },
+  { script: "../assets/js/profile.js" },
 ];
 
 router.get("/", (req, res) => {
@@ -25,7 +27,7 @@ router.get("/", (req, res) => {
       },
     ],
   })
-    .then(postData => {
+    .then((postData) => {
       const posts = postData.map((post) => post.get({ plain: true }));
 
       res.render("homepage", {
@@ -34,7 +36,7 @@ router.get("/", (req, res) => {
         scripts: scripts,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -122,15 +124,15 @@ router.get("/profile", (req, res) => {
       },
     ],
   })
-    .then(reviewData => {
-      const reviews = reviewData.map((review) => review.get({ plain: true }));
+    .then((reviewData) => {
+      // const reviews = reviewData.map((review) => review.get({ plain: true }));
 
       res.render("profile", {
-        reviews,
+        reviews: reviewData[0].title,
         loggedIn: req.session.loggedIn,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -153,7 +155,7 @@ router.get("/post/:id", (req, res) => {
       },
     ],
   })
-    .then(postData => {
+    .then((postData) => {
       if (!postData) {
         res.status(404).json({ message: "No post found with this id" });
         return;
@@ -166,7 +168,7 @@ router.get("/post/:id", (req, res) => {
         loggedIn: req.session.loggedIn,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
