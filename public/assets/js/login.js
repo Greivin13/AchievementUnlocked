@@ -12,8 +12,10 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
+      console.log("Successfully logged in, " + username);
       document.location.replace("/");
     } else {
+      console.log("Login failed.");
       alert(response.statusText);
     }
   }
@@ -40,8 +42,10 @@ const signupFormHandler = async (event) => {
       });
 
       if (response.ok) {
+        console.log("Successfully signed up, " + username);
         document.location.replace("/");
       } else {
+        console.log("Signup failed.");
         alert(response.statusText);
       }
     }
