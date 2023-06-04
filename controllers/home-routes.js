@@ -8,6 +8,8 @@ const scripts = [
   { script: "../assets/js/index.js" },
   { script: "../assets/js/comment.js" },
   { script: "../assets/js/add-post.js" },
+  { script: "../assets/js/homepage.js" },
+  { script: "../assets/js/profile.js" },
 ];
 
 router.get("/", (req, res) => {
@@ -40,36 +42,68 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/Discussion", (req, res) => {
-  console.log("New Request Recieved!");
-  Post.findAll({
-    attributes: ["id", "post_content", "title", "created_at"],
-    include: [
-      {
-        model: Comment,
-        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
-    ],
-  })
-    .then((postData) => {
-      const posts = postData.map((post) => post.get({ plain: true }));
+// router.get("/Discussion", (req, res) => {
+//   console.log("New Request Recieved!");
+//   Post.findAll({
+//     attributes: ["id", "post_content", "title", "created_at"],
+//     include: [
+//       {
+//         model: Comment,
+//         attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
+//         include: {
+//           model: User,
+//           attributes: ["username"],
+//         },
+//       },
+//     ],
+//   })
+//     .then(postData => {
+//       const posts = postData.map((post) => post.get({ plain: true }));
 
-      res.render("discussion", {
-        posts,
-        loggedIn: req.session.loggedIn,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+//       res.render("discussion", {
+//         posts,
+//         loggedIn: req.session.loggedIn,
+//       });
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
-router.get("/Profile", (req, res) => {
+// // const test = [
+// //   {
+// //     response: {
+// //       players: [
+// //         {
+// //           steamid: "76561198054586238",
+// //           communityvisibilitystate: 3,
+// //           profilestate: 1,
+// //           personaname: "Rin",
+// //           profileurl: "https://steamcommunity.com/profiles/76561198054586238/",
+// //           avatar:
+// //             "https://avatars.steamstatic.com/c13dac9ba00a478e31d27413786eba95a49f70df.jpg",
+// //           avatarmedium:
+// //             "https://avatars.steamstatic.com/c13dac9ba00a478e31d27413786eba95a49f70df_medium.jpg",
+// //           avatarfull:
+// //             "https://avatars.steamstatic.com/c13dac9ba00a478e31d27413786eba95a49f70df_full.jpg",
+// //           avatarhash: "c13dac9ba00a478e31d27413786eba95a49f70df",
+// //           personastate: 0,
+// //           primaryclanid: "103582791429521408",
+// //           timecreated: 1324070000,
+// //           personastateflags: 0,
+// //           loccountrycode: "US",
+// //         },
+// //       ],
+// //     },
+// //   },
+// // ];
+
+// // router.get("/profile", async (req, res) => {
+// //   return res.render("profile", test[req.params.id]);
+// // });
+
+router.get("/profile", (req, res) => {
   console.log("New Request Recieved!");
   Review.findAll({
     attributes: ["id", "review_content", "title", "created_at"],
@@ -91,70 +125,19 @@ router.get("/Profile", (req, res) => {
     ],
   })
     .then((reviewData) => {
-      const reviews = reviewData.map((review) => review.get({ plain: true }));
-
-      res.render("profile", {
-        reviews,
-        loggedIn: req.session.loggedIn,
+      // const reviews = reviewData.map((review) => review.get({ plain: true }));
+      // for (let i = 0; i < reviewData.length; i++) {
+      //   console.log(reviewData[i]);
+      // }
+      let displayData = {};
+      reviewData.forEach((review) => {
+        // displayData.push(review.get({ plain: true }));
+        displayData[review.get({ plain: true }).id] = review.get({
+          plain: true,
+        });
       });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.get("/Discussion", (req, res) => {
-  console.log("New Request Recieved!");
-  Post.findAll({
-    attributes: ["id", "post_content", "title", "created_at"],
-    include: [
-      {
-        model: Comment,
-        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
-    ],
-  })
-    .then((postData) => {
-      const posts = postData.map((post) => post.get({ plain: true }));
-
-      res.render("discussion", {
-        posts,
-        loggedIn: req.session.loggedIn,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.get("/Profile", (req, res) => {
-  console.log("New Request Recieved!");
-  Review.findAll({
-    attributes: ["id", "review_content", "title", "created_at"],
-    include: [
-      {
-        model: revComment,
-        attributes: ["id", "revComment_text", "review_id", "user_id", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
-    ],
-  })
-    .then((reviewData) => {
-      const reviews = reviewData.map((review) => review.get({ plain: true }));
-
-      res.render("profile", {
-        reviews,
-        loggedIn: req.session.loggedIn,
-      });
+      console.log(displayData);
+      res.render("profile", displayData);
     })
     .catch((err) => {
       console.log(err);
