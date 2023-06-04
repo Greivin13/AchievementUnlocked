@@ -4,18 +4,24 @@ const session = require("express-session");
 const routes = require("./controllers");
 const sequelize = require("./config/connection.js");
 const exphbs = require("express-handlebars");
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(
-  session({
+const sess = {
     secret: "keyboard cat",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: { secure: true },
-  })
-);
+    store: new SequelizeStore({
+      db: sequelize
+    })
+  };
+
+app.use(session(sess));
+
+const helpers = require('./utils/helpers');
 
 const hbs = exphbs.create({});
 
@@ -31,7 +37,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(routes);
 
 // FIXME: CHANGE TO FALSE LATER
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
     console.log(`Now listening\nhttp://localhost:${PORT}`)
   );
