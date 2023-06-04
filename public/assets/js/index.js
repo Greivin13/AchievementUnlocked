@@ -6,6 +6,10 @@ function GetPlayerSummaries() {
       dataType: "json",
       success: function (data) {
         console.log("GetPlayerSummaries success");
+        // displayPlayerSummary(data);
+        // $("#testDiv").html(JSON.stringify(data));
+        // insert data into handlebars template
+        // res.render("profile", { data: data });
         resolve(data);
         return data;
       },
@@ -15,6 +19,12 @@ function GetPlayerSummaries() {
     });
   });
 }
+
+// function displayPlayerSummary(data) {
+//   router.get("/", (req, res) => {
+//     res.render("homepage", data);
+//   });
+// }
 
 const thisPlayerSummary = GetPlayerSummaries(async (data) => {
   const api_url = "/steamData";

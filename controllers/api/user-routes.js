@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const { User, Post, Comment } = require("../../models");
+const { User, Post, Comment, Review, revComment } = require("../../models");
 
 router.get("/", (req, res) => {
-  User.findALL({
+  User.findAll({
     attributes: { exclude: ["password"] },
   })
-    .then((userData) => res.json(userData))
-    .catch((err) => {
+    .then(userData => res.json(userData))
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -31,28 +31,40 @@ router.get("/:id", (req, res) => {
           attributes: ["title"],
         },
       },
+      {
+        model: Review,
+        attributes: ["id", "title", "review_content", "created_at"],
+      },
+      {
+        model: revComment,
+        attributes: ["id", "revComment_text", "created_at"],
+        include: {
+          model: Review,
+          attributes: ["title"],
+        },
+      },
     ],
   })
-    .then((userData) => {
+    .then(userData => {
       if (!userData) {
         res.status(404).json({ message: "No User found containing this id" });
         return;
       }
       res.json(userData);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-router.post("/sign-up", (req, res) => {
+router.post("/", (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
   })
-    .then((userData) => {
+    .then(userData => {
       req.session.save(() => {
         req.session.user_id = userData.id;
         req.session.username = userData.username;
@@ -61,7 +73,7 @@ router.post("/sign-up", (req, res) => {
         res.json(userData);
       });
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -72,7 +84,7 @@ router.post("/login", (req, res) => {
     where: {
       email: req.body.email,
     },
-  }).then((userData) => {
+  }).then(userData => {
     if (!userData) {
       res
         .status(400)
@@ -117,14 +129,14 @@ router.put("/:id", (req, res) => {
       id: req.params.id,
     },
   })
-    .then((userData) => {
+    .then(userData => {
       if (!userData) {
         res.status(404).json({ message: "No user found containing this id" });
         return;
       }
       res.json(userData);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });

@@ -3,9 +3,9 @@ const sequelize = require("../../config/connection");
 const { Post, User, Comment } = require("../../utils/auth");
 const withAuth = require("../../utils/auth");
 
-router.get("/Discussion", (req, res) => {
+router.get('/', (req, res) => {
   console.log("New Request Recieved!");
-  Post.findALL({
+  Post.findAll({
     attributes: ["id", "post_content", "title", "created_at"],
     include: [
       {
@@ -18,14 +18,14 @@ router.get("/Discussion", (req, res) => {
       },
     ],
   })
-    .then((postData) => res.json(postData))
-    .catch((err) => {
+    .then(postData => res.json(postData))
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-router.get("/Discussion/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,
@@ -42,32 +42,32 @@ router.get("/Discussion/:id", (req, res) => {
       },
     ],
   })
-    .then((postData) => {
+    .then(postData => {
       if (!postData) {
         res.status(404).json({ message: "No post found containing this id" });
         return;
       }
       res.json(postData);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-router.post("/Discussion", withAuth, (req, res) => {
+router.post('/', withAuth, (req, res) => {
   Post.create({
     title: req.body.title,
     post_content: req.body.post_content,
     user_id: req.params.user_id,
   })
-    .then((postData) => res.json(postData))
-    .catch((err) => {
+    .then(postData => res.json(postData))
+    .catch(err => {
       res.status(500).json(err);
     });
 });
 
-router.put("/Discussion/:id", withAuth, (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
   Post.update(
     {
       title: req.body.title,
@@ -78,34 +78,34 @@ router.put("/Discussion/:id", withAuth, (req, res) => {
       },
     }
   )
-    .then((postData) => {
+    .then(postData => {
       if (!postData) {
         res.status(404).json({ message: "No post found containing this id" });
         return;
       }
       res.json(postData);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-router.delete("/Discussion/:id", withAuth, (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
   console.log("id", req.params.id);
   Post.destroy({
     where: {
       id: req.params.id,
     },
   })
-    .then((postData) => {
+    .then(postData => {
       if (!postData) {
         res.status(404).json({ message: "No post found containing this id" });
         return;
       }
       res.json(postData);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });

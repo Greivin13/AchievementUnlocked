@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { revComment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-    Comment.findll()
-    .then(commentData => res.json(commentData))
+    revComment.findall()
+    .then(revCommentData => res.json(revCommentData))
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -12,12 +12,12 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', withAuth, (req, res) => {
-    Comment.create({
+    revComment.create({
         comment_text: req.body.comment_text,
         user_id: req.session.user_id,
         post_id: req.body.post_id
     })
-    .then(commentData => res.json(commentData))
+    .then(revCommentData => res.json(revCommentData))
     .catch(err => {
         console.log(err);
         res.status(400).json(err);
@@ -25,17 +25,17 @@ router.post('/', withAuth, (req, res) => {
 });
 
 router.delete('/:id', withAuth, (req, res) => {
-    Comment.destroy({
+    revComment.destroy({
         where: {
             id: req.params.id
         }
     })
-    .then(commentData => {
-        if (!commentData) {
+    .then(revCommentData => {
+        if (!revCommentData) {
             res.status(404).json({ message: 'No comment found containing this id' });
             return;
         }
-        res.json(commentData);
+        res.json(revCommentData);
     })
     .catch(err => {
         console.log(err);
