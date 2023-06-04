@@ -3,14 +3,20 @@ const sequelize = require("../../config/connection");
 const { Review, User, revComment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   console.log("New Request Recieved!");
   Review.findAll({
     attributes: ["id", "review_content", "title", "created_at"],
     include: [
       {
         model: revComment,
-        attributes: ["id", "revComment_text", "review_id", "user_id", "created_at"],
+        attributes: [
+          "id",
+          "revComment_text",
+          "review_id",
+          "user_id",
+          "created_at",
+        ],
         include: {
           model: User,
           attributes: ["username"],
@@ -22,14 +28,14 @@ router.get('/', (req, res) => {
       }
     ]
   })
-    .then(reviewData => res.json(reviewData))
-    .catch(err => {
+    .then((reviewData) => res.json(reviewData))
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get("/:id", (req, res) => {
   Review.findOne({
     where: {
       id: req.params.id,
@@ -38,7 +44,13 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: revComment,
-        attributes: ["id", "revComment_text", "review_id", "user_id", "created_at"],
+        attributes: [
+          "id",
+          "revComment_text",
+          "review_id",
+          "user_id",
+          "created_at",
+        ],
         include: {
           model: User,
           attributes: ["username"],
@@ -46,32 +58,32 @@ router.get('/:id', (req, res) => {
       },
     ],
   })
-    .then(reviewData => {
+    .then((reviewData) => {
       if (!reviewData) {
         res.status(404).json({ message: "No Review found containing this id" });
         return;
       }
       res.json(reviewData);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-router.post('/', withAuth, (req, res) => {
+router.post("/", withAuth, (req, res) => {
   Review.create({
     title: req.body.title,
     review_content: req.body.review_content,
     user_id: req.params.user_id,
   })
-    .then(reviewData => res.json(reviewData))
-    .catch(err => {
+    .then((reviewData) => res.json(reviewData))
+    .catch((err) => {
       res.status(500).json(err);
     });
 });
 
-router.put('/:id', withAuth, (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
   Review.update(
     {
       title: req.body.title,
@@ -82,14 +94,14 @@ router.put('/:id', withAuth, (req, res) => {
       },
     }
   )
-    .then(reviewData => {
+    .then((reviewData) => {
       if (!reviewData) {
         res.status(404).json({ message: "No review found containing this id" });
         return;
       }
       res.json(reviewData);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });

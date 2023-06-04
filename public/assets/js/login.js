@@ -61,3 +61,8 @@ $("#loginBtn").click(function (e) {
   e.preventDefault();
   document.location.replace("/login");
 });
+
+$("#homeBtn").click(function (e) {
+  e.preventDefault();
+  document.location.replace("/");
+});
