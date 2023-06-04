@@ -3,7 +3,7 @@ const { revComment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-    revComment.findall()
+    revComment.findAll()
     .then(revCommentData => res.json(revCommentData))
     .catch(err => {
         console.log(err);

@@ -101,7 +101,7 @@ router.get("/", (req, res) => {
 // //   return res.render("profile", test[req.params.id]);
 // // });
 
-router.get("/", (req, res) => {
+router.get("/profile", (req, res) => {
   console.log("New Request Recieved!");
   Review.findAll({
     attributes: ["id", "review_content", "title", "created_at"],
