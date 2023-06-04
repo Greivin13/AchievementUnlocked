@@ -1,5 +1,5 @@
 <header class="my-4">
-  <button id="signupBtn" class="btn btn-primary m-4 align-right">Sign in</button>
+  <button id="loginBtn" class="btn btn-primary m-4 align-right">Login</button>
   <h1 id="achievement" class="text-center">Achievement Unlocked</h1>
 
 </header>
@@ -18,15 +18,15 @@
     </button>
     <div class="collapse navbar-collapse container" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <a class="nav-link" href="#">Profile</a>
-        <a class="nav-link" href="#">News and Releases</a>
-        <a class="nav-link" href="#">Discussion</a>
+        <button id="homeBtn" class="btn">Home</button>
+        <button id="profileBtn" class="btn">Profile</button>
+        <button id="newsBtn" class="btn">News and Releases</button>
+        <button id="discussionBtn" class="btn">Discussion</button>
       </div>
     </div>
   </div>
 </nav>
-<div>{{playerData.players.steamid}}</div>
+<div id="testDiv">{{playerData}}</div>
 <main>
   <section id="topRow" class="container">
     <div class="row">

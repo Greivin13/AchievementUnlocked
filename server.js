@@ -4,35 +4,40 @@ const session = require("express-session");
 const routes = require("./controllers");
 const sequelize = require("./config/connection.js");
 const exphbs = require("express-handlebars");
-const router = require("express").Router();
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-const app = express();
 const PORT = process.env.PORT || 3001;
+const app = express();
 
-app.use(
-  session({
-    secret: "keyboard cat",
+// session setup
+const sess = {
+    secret: 'Super secret secret',
     resave: false,
-    saveUninitialized: false,
-    cookie: { secure: true },
-  })
-);
+    saveUninitialized: true,
+    cookie: {},
+    store: new SequelizeStore({
+      db: sequelize
+    })
+  };
 
-const hbs = exphbs.create({});
+app.use(session(sess));
 
+const helpers = require('./utils/helpers');
+
+const hbs = exphbs.create({ helpers });
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.use(routes);
 
 // FIXME: CHANGE TO FALSE LATER
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
     console.log(`Now listening\nhttp://localhost:${PORT}`)
   );
@@ -46,5 +51,5 @@ app.get("/steamData", async (request, response) => {
   const playerData = await fetch_response.json();
   response.json(playerData);
   // console.log(res.json(playerData));
-  // res.render("homepage", playerData);
+  // response.render("profile", { playerData: playerData });
 });

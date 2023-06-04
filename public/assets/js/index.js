@@ -6,6 +6,10 @@ function GetPlayerSummaries() {
       dataType: "json",
       success: function (data) {
         console.log("GetPlayerSummaries success");
+        displayPlayerSummary(data);
+        // $("#testDiv").html(JSON.stringify(data));
+        // insert data into handlebars template
+        // res.render("profile", { data: data });
         resolve(data);
         return data;
       },
@@ -13,6 +17,12 @@ function GetPlayerSummaries() {
         reject(err);
       },
     });
+  });
+}
+
+async function displayPlayerSummary(data) {
+  router.get("/", (req, res) => {
+    res.render("homepage", data);
   });
 }
 
