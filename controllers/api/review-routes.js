@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
-const { Review, User, revComment } = require("../../utils/auth");
+const { Review, User, revComment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 router.get('/', (req, res) => {
   console.log("New Request Recieved!");
-  Review.findALL({
+  Review.findAll({
     attributes: ["id", "review_content", "title", "created_at"],
     include: [
       {
@@ -14,9 +14,13 @@ router.get('/', (req, res) => {
         include: {
           model: User,
           attributes: ["username"],
-        },
+        }
       },
-    ],
+      {
+        model: User,
+        attributes: ['username']
+      }
+    ]
   })
     .then(reviewData => res.json(reviewData))
     .catch(err => {

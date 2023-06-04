@@ -53,4 +53,4 @@ Review.hasMany(revComment, {
     foreignKey: 'review_id'
 })
 
-module.exports = {User, Post, Review, Comment, revComment};
+module.exports = { User, Post, Review, Comment, revComment };
