@@ -126,11 +126,18 @@ router.get("/profile", (req, res) => {
   })
     .then((reviewData) => {
       // const reviews = reviewData.map((review) => review.get({ plain: true }));
-
-      res.render("profile", {
-        reviews: reviewData[0].title,
-        loggedIn: req.session.loggedIn,
+      // for (let i = 0; i < reviewData.length; i++) {
+      //   console.log(reviewData[i]);
+      // }
+      let displayData = {};
+      reviewData.forEach((review) => {
+        // displayData.push(review.get({ plain: true }));
+        displayData[review.get({ plain: true }).id] = review.get({
+          plain: true,
+        });
       });
+      console.log(displayData);
+      res.render("profile", displayData);
     })
     .catch((err) => {
       console.log(err);
