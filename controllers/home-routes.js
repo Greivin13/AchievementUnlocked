@@ -129,6 +129,7 @@ router.get("/", async (req, res) => {
 // //   return res.render("profile", test[req.params.id]);
 // // });
 
+
 router.get("/profile", async (req, res) => {
   try {
     const user_activity = await User.findByPk(req.session.user_id, {
@@ -141,6 +142,47 @@ router.get("/profile", async (req, res) => {
 
     },
     include: [{model: Review}, {model: Post}]
+
+// router.get("/profile", (req, res) => {
+//   console.log("New Request Recieved!");
+//   Review.findAll({
+//     attributes: ["id", "review_content", "title", "created_at"],
+//     include: [
+//       {
+//         model: revComment,
+//         attributes: [
+//           "id",
+//           "revComment_text",
+//           "review_id",
+//           "user_id",
+//           "created_at",
+//         ],
+//         include: {
+//           model: User,
+//           attributes: ["username"],
+//         },
+//       },
+//     ],
+//   })
+//     .then((reviewData) => {
+//       // const reviews = reviewData.map((review) => review.get({ plain: true }));
+//       // for (let i = 0; i < reviewData.length; i++) {
+//       //   console.log(reviewData[i]);
+//       // }
+//       let displayData = {};
+//       reviewData.forEach((review) => {
+//         // displayData.push(review.get({ plain: true }));
+//         displayData[review.get({ plain: true }).id] = review.get({
+//           plain: true,
+//         });
+//       });
+//       console.log(displayData);
+//       res.render("profile", displayData);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+
     });
     const loggedIn = req.session.logged_in
     const user = req.session.user_id
