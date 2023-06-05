@@ -71,11 +71,11 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", withAuth, (req, res) => {
+router.post("/", (req, res) => {
   Review.create({
     title: req.body.title,
     review_content: req.body.review_content,
-    user_id: req.params.user_id,
+    user_id: 3,
   })
     .then((reviewData) => res.json(reviewData))
     .catch((err) => {

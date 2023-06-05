@@ -14,7 +14,12 @@ const sess = {
     secret: 'Super secret secret',
     resave: false,
     saveUninitialized: true,
-    cookie: {},
+    cookie: {
+      maxAge: 300000,
+      httpOnly: true,
+      secure: false,
+      sameSite: 'strict',
+    },
     store: new SequelizeStore({
       db: sequelize
     })
@@ -30,8 +35,9 @@ app.set("view engine", "handlebars");
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/assets", express.static(path.join(__dirname, "/public/assets")));
 
 // Routes
 app.use(routes);
@@ -43,13 +49,13 @@ sequelize.sync({ force: false }).then(() => {
   );
 });
 
-app.get("/steamData", async (request, response) => {
-  const requestParam = request.params.steamID;
-  // const playerDataRequest = requestParam;
-  const queryUrl = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.steamkey}&steamids=${process.env.rinSteam64ID}`;
-  const fetch_response = await fetch(queryUrl);
-  const playerData = await fetch_response.json();
-  response.json(playerData);
-  // console.log(res.json(playerData));
-  // response.render("profile", { playerData: playerData });
-});
+// app.get("/steamData", async (request, response) => {
+//   const requestParam = request.params.steamID;
+//   // const playerDataRequest = requestParam;
+//   const queryUrl = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.steamkey}&steamids=${process.env.rinSteam64ID}`;
+//   const fetch_response = await fetch(queryUrl);
+//   const playerData = await fetch_response.json();
+//   response.json(playerData);
+//   // console.log(res.json(playerData));
+//   // response.render("profile", { playerData: playerData });
+// });

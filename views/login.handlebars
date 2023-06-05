@@ -1,6 +1,6 @@
 <button id="homeBtn" class="btn btn-primary m-4 align-right">Home</button>
 <div class="form-signin container col-3 text-center">
-  <form>
+  <form id="login-form">
     <img class="my-4 w-100" src="https://i.imgur.com/Mt6nYs0.png" alt="logo" />
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
@@ -8,7 +8,7 @@
       <input
         type="email"
         class="form-control"
-        id="floatingInput"
+        id="email-login"
         placeholder="name@example.com"
       />
       <label for="floatingInput">Email address</label>
@@ -17,7 +17,7 @@
       <input
         type="password"
         class="form-control"
-        id="floatingPassword"
+        id="password-login"
         placeholder="Password"
       />
       <label for="floatingPassword">Password</label>
@@ -35,3 +35,5 @@
     </div>
   </form>
 </div>
+
+<script src="/js/login.js"></script>
