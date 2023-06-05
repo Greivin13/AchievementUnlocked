@@ -1,4 +1,4 @@
-const { revComment } = require('../models');
+const { revComment } = require("../models");
 
 const revCommentData = [
     {
