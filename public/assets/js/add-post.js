@@ -5,6 +5,8 @@
 //     title: "New Post",
 //     post_content: " ",
 //     user_id: 1,
+//       THIS WILL ADD COMMENT
+//      const commentText = ""
 //   };
 // };
 // try {
