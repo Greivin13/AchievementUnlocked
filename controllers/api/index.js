@@ -8,7 +8,7 @@ const revCommentRoutes = require("./revComment-routes.js");
 router.use("/users", userRoutes);
 router.use("/discussion", postRoutes);
 router.use("/comments", commentRoutes);
-router.use("/reviews", reviewRoutes);
+// router.use("/reviews", reviewRoutes);
 router.use("/profile", reviewRoutes);
 router.use("/revComments", revCommentRoutes);
 
