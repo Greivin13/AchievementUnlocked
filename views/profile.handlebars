@@ -1,10 +1,12 @@
-<div id="userProfile" class="container card col-3">
-  <div class="card-header">
-    {{reviews}}
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Games: {{User.numGames}}</li>
-    <li class="list-group-item">Bans: {{User.banStatus}}</li>
-    <li class="list-group-item">More stuff</li>
-  </ul>
+<main>
+    {{#each userProfile as |userProfile|}}
+  {{#if userProfile.userProfile}}
+  {{#each userProfile.userProfile as |userProfile|}}
+  <div id="profile">
+  <h2>{{review.title}}</h2>
+  <p>{{review.review_content}}</p>
 </div>
+  {{/each}}
+  {{/if}}
+  {{/each}}
+</main>
