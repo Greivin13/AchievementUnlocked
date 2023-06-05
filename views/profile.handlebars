@@ -1,3 +1,16 @@
+<main>
+    {{#each userProfile as |userProfile|}}
+  {{#if userProfile.userProfile}}
+  {{#each userProfile.userProfile as |userProfile|}}
+  <div id="profile">
+  <h2>{{review.title}}</h2>
+  <p>{{review.review_content}}</p>
+</div>
+  {{/each}}
+  {{/if}}
+  {{/each}}
+</main>
+
 <div id="userProfile" class="container card col-3">
   <div class="card-header">
     {{#each displayData as |review|}}
