@@ -70,16 +70,8 @@ router.post("/", (req, res) => {
           req.session.user_id = userData.id;
           req.session.username = userData.username;
           req.session.loggedIn = true;
-
-        res.redirect(303, "/");
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-          res.redirect(303, "/");
         });
+        res.redirect(303, "/");
       })
       .catch((err) => {
         console.log(err);
@@ -89,6 +81,7 @@ router.post("/", (req, res) => {
     res.status(400).json(err);
   }
 });
+
 
 router.post("/login", async (req, res) => {
   try {

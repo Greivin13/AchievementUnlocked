@@ -54,9 +54,9 @@ sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
     console.log(`Now listening\nhttp://localhost:${PORT}`)
   );
-}); // <-- Add closing brace here
+}); 
 
-app.get("/", async (request, response) => {
+app.get("/steamData", async (request, response) => {
   const steamID = '76561199036046793'; // Replace with the desired Steam ID
 
   try {
@@ -70,6 +70,7 @@ app.get("/", async (request, response) => {
     response.status(500).json({ error: 'An error occurred' });
   }
 });
+
 
 steam.resolve('https://steamcommunity.com/profiles/76561199036046793/').then(id => {
   console.log(id); // 76561198146931523
