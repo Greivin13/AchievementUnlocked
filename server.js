@@ -42,7 +42,6 @@ app.use("/assets", express.static(path.join(__dirname, "/public/assets")));
 // Routes
 app.use(routes);
 
-// FIXME: CHANGE TO FALSE LATER
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
     console.log(`Now listening\nhttp://localhost:${PORT}`)

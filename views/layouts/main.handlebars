@@ -18,33 +18,38 @@
     <title>AchievementUnlocked</title>
   </head>
   <header class="my-4">
-  <button id="loginBtn" class="btn btn-primary m-4 align-right"> <a href="/login">Login</a></button>
-  <h1 id="achievement" class="text-center">Achievement Unlocked</h1>
+    <button id="loginBtn" class="btn btn-primary m-4 align-right">
+      <a href="/login">Login</a></button>
+    <h1 id="achievement" class="text-center">Achievement Unlocked</h1>
 
-</header>
+  </header>
   <nav class="navbar navbar-expand-md bg-body-tertiary my-5">
-  <div class="container">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse container" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <button id="homeBtn" class="btn">Home</button>
-        <button id="profileBtn" class="btn">Profile</button>
-        <button id="newsBtn" class="btn">News and Releases</button>
-        <button id="discussionBtn" class="btn">Discussion</button>
+    <div class="container">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse container" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <button id="homeBtn" class="btn m-4">
+            <a href="/">Home</a></button>
+          <button id="profileBtn" class="btn m-4">
+            <a href="/profile">Profile</a></button>
+          <button id="newsBtn" class="btn m-4">
+            <a href="/news">News and Releases</a></button>
+          <button id="discussionBtn" class="btn m-4">
+            <a href="/discussion">Discussion</a></button>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
   <body>
     {{{body}}}
@@ -63,6 +68,7 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
+    {{! public scripts }}
     {{#each scripts}}
       <script src="{{script}}"></script>
     {{/each}}
