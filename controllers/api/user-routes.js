@@ -77,9 +77,6 @@ router.post("/", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
-  } catch (err) {
-    res.status(400).json(err);
-  }
 });
 
 router.post("/login", async (req, res) => {
