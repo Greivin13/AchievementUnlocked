@@ -20,13 +20,13 @@ router.get("/", (req, res) => {
         include: {
           model: User,
           attributes: ["username"],
-        }
+        },
       },
       {
         model: User,
-        attributes: ['username']
-      }
-    ]
+        attributes: ["username"],
+      },
+    ],
   })
     .then((reviewData) => res.json(reviewData))
     .catch((err) => {
@@ -75,9 +75,9 @@ router.post("/", (req, res) => {
   Review.create({
     title: req.body.title,
     review_content: req.body.review_content,
-    user_id: 3,
+    user_id: req.session.user_id,
   })
-    .then((reviewData) => res.json(reviewData))
+    .then((reviewData) => res.redirect(303, "/"))
     .catch((err) => {
       res.status(500).json(err);
     });
