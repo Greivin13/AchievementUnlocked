@@ -1,38 +1,54 @@
-<button id="homeBtn" class="btn btn-primary m-4 align-right">Home</button>
 <div class="form-signin container col-3 text-center">
-  <form>
+  <form id="signupForm" action="/api/users" method="POST">
     <img class="my-4 w-100" src="https://i.imgur.com/Mt6nYs0.png" alt="logo" />
     <h1 class="h3 mb-3 fw-normal">Create an account</h1>
 
     <div class="form-floating">
       <input
+        name="username"
+        type="text"
+        class="form-control"
+        id="usernameInput"
+        placeholder="username"
+      />
+      <label for="usernameInput">Username</label>
+    </div>
+    <div class="form-floating">
+      <input
+        name="email"
         type="email"
         class="form-control"
-        id="floatingInput"
+        id="email-signup"
         placeholder="name@example.com"
       />
-      <label for="floatingInput">Email address</label>
+      <label for="email-signup">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input
+        name="password"
+        type="password"
+        class="form-control"
+        id="password-signup"
+        placeholder="Password"
+      />
+      <label for="password-signup">Password</label>
     </div>
     <div class="form-floating">
       <input
         type="password"
         class="form-control"
-        id="setPassword"
+        id="passwordConfirmation-signup"
         placeholder="Password"
       />
-      <label for="setPassword">Password</label>
-    </div>
-    <div class="form-floating">
-      <input
-        type="password"
-        class="form-control"
-        id="confirmPassword"
-        placeholder="Password"
-      />
-      <label for="confirmPassword">Confirm Password</label>
+      <label for="passwordConfirmation-signup">Confirm Password</label>
     </div>
 
-    <button class="mt-3 w-100 btn btn-lg btn-primary" type="submit">Sign up!</button>
+    <button
+      id="signupBtn"
+      class="mt-3 w-100 btn btn-lg btn-primary"
+      type="submit"
+    >Sign up!</button>
   </form>
-  <button id="loginBtn" class="mt-4 btn btn-primary" type="submit">Back to login</button>
+  <button id="loginNav" class="btn m-4">
+    <a href="/login">Back to login</a></button>
 </div>
