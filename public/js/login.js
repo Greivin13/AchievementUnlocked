@@ -37,26 +37,19 @@ if (url.split("?")[1] === "invalid=true") {
   alert("Invalid Credentials");
 }
 
+function switchToHome() {
+  document.location.replace("/");
+}
+
 $("#signupForm").submit(function () {
   return signupFormHandler();
 });
 $("#loginForm").submit(function () {
   return loginFormHandler();
 });
-
-// document.querySelector("#login-form").addEventListener("submit", loginFormHandler);
-
-// $("").click(function (e) {
-//   e.preventDefault();
-//   signupFormHandler();
-//   document.location.replace("/");
-// });
-
-// $("#loginBtn").click(function (e) {
-//   e.preventDefault();
-//   document.location.replace("/login");
-// });
-
+$("#createReviewForm").submit(function () {
+  return switchToHome();
+});
 $("#homeBtn").click(function (e) {
   e.preventDefault();
   document.location.replace("/");

@@ -6,7 +6,3 @@ $("#newsBtn").click(function (e) {
   e.preventDefault();
   document.location.replace("/news");
 });
-$("#createReviewBtn").click(function (e) {
-  e.preventDefault();
-  document.location.replace("/create-review");
-});

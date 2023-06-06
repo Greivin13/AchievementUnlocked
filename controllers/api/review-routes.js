@@ -77,7 +77,7 @@ router.post("/", (req, res) => {
     review_content: req.body.review_content,
     user_id: req.session.user_id,
   })
-    .then((reviewData) => res.json(reviewData))
+    .then((reviewData) => res.redirect(303, "/"))
     .catch((err) => {
       res.status(500).json(err);
     });
