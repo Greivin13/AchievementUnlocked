@@ -1,4 +1,9 @@
 const path = require("path");
+
+const SteamAPI = require('steamapi');
+require('dotenv').config();
+
+const steam = new SteamAPI(process.env.API_KEY);
 const express = require("express");
 const session = require("express-session");
 const routes = require("./controllers");
@@ -6,11 +11,6 @@ const sequelize = require("./config/connection.js");
 const exphbs = require("express-handlebars");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const axios = require("axios");
-
-const SteamAPI = require('steamapi');
-require('dotenv').config();
-
-const steam = new SteamAPI(process.env.API_KEY);
 
 
 const PORT = process.env.PORT || 3001;
@@ -39,6 +39,7 @@ const helpers = require("./utils/helpers");
 
 const hbs = exphbs.create({ helpers });
 app.engine("handlebars", hbs.engine);
+app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "handlebars");
 
 // Middleware
@@ -55,6 +56,73 @@ sequelize.sync({ force: false }).then(() => {
     console.log(`Now listening\nhttp://localhost:${PORT}`)
   );
 }); 
+
+// app.get('/news/:appid', async (req, res) => {
+//   const appid = req.params.appid;
+//   try {
+//     const newsItems = await steam.getNewsForApp(appid, 5);
+
+//     res.render('news', { newsItems });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'An error occurred' });
+//   }
+// });
+app.get('/steamProfile', async (req, res) => {
+  const steamID = req.query.steamID;
+
+  try {
+    // Use the steamapi package to fetch the user profile data using the provided Steam ID
+    const playerData = await steam.getUserSummary(steamID);
+    
+    const userProfile = {
+      personaname: playerData.personaname,
+      avatarfull: playerData.avatarfull,
+      steamid: playerData.steamid,
+      profileurl: playerData.profileurl,
+      // Add more properties as needed
+    };
+
+    res.render("steamProfile", { userProfile });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
+
+app.get('/steamMembers', async (req, res) => {
+  const steamID = '76561199036046793'; // Replace with the desired Steam ID
+  const steamID1 = '76561198054586238';
+  const steamID2 = '76561198947331366';
+  const steamID3 = '76561198289182228';
+
+  try {
+    const queryUrl1 = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID}`;
+    const queryUrl2 = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID1}`;
+    const queryUrl3 = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID2}`;
+    const queryUrl4 = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID3}`;
+    const apiResponse1 = await axios.get(queryUrl1);
+    const apiResponse2 = await axios.get(queryUrl2);
+    const apiResponse3 = await axios.get(queryUrl3);
+    const apiResponse4 = await axios.get(queryUrl4);
+    const playerData1 = apiResponse1.data.response.players[0];
+    const playerData2 = apiResponse2.data.response.players[0];
+    const playerData3 = apiResponse3.data.response.players[0];
+    const playerData4 = apiResponse4.data.response.players[0];
+
+    // Create an array and push the playerData objects
+    const memberSummaries = [];
+    memberSummaries.push(playerData1, playerData2, playerData3, playerData4);
+
+    // Render the "steamMembers" view with the memberSummaries data
+    res.render('steamMembers', { memberSummaries });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
+
 
 app.get("/steamData", async (request, response) => {
   const steamID = '76561199036046793'; // Replace with the desired Steam ID

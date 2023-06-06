@@ -66,6 +66,7 @@ router.get("/", async (req, res) => {
 // //   return res.render("profile", test[req.params.id]);
 // // });
 
+
 router.get("/profile", async (req, res) => {
   try {
     const user_activity = await User.findByPk(req.session.user_id, {

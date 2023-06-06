@@ -14,20 +14,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Steam Profile</title>
+  <title>User Profile</title>
 </head>
 <body>
-  <h1>Steam Profile</h1>
-  <h2>Player Data</h2>
-  <ul>
-    <li>Steam ID: {{playerData.steamid}}</li>
-    <li>Display Name: {{playerData.personaname}}</li>
-    <li>Profile URL: {{playerData.profileurl}}</li>
-    <li>Avatar Image: <img src="{{playerData.avatarfull}}" alt="Avatar"></li>
-  </ul>
+  <h1>User Profile</h1>
+  <h2>{{ playerData.personaname }}</h2>
+  <img src="{{ playerData.avatarfull }}" alt="Profile Picture">
+  <p>Steam ID: {{ playerData.steamid }}</p>
+  <p>Profile URL: {{ playerData.profileurl }}</p>
+  <!-- Add more profile details as needed -->
 </body>
 </html>
-
 {{!-- <div id="userProfile" class="container card col-3">
   <div class="card-header">
     {{#each displayData as |review|}}
