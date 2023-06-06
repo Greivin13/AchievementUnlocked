@@ -2,15 +2,10 @@
   {{#each reviews as |review|}}
     {{#if review.reviews}}
       {{#each review.reviews as |review|}}
-        {{! <ul id="testDiv" class="list-group"> }}
-        {{! <li class="list-group-item"> }}
+        <h1>{{review.reviews.user.username}}</h1>
         <h2>{{review.title}}</h2>
         <hr />
-        {{! </li> }}
-        {{! <li> }}
         <p>{{review.review_content}}</p>
-        {{! </li> }}
-        {{! </ul> }}
       {{/each}}
     {{/if}}
   {{/each}}
