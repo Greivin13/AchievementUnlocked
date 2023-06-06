@@ -1,0 +1,42 @@
+{{!-- <main>
+    {{#each userProfile as |userProfile|}}
+  {{#if userProfile.userProfile}}
+  {{#each userProfile.userProfile as |userProfile|}}
+  <div id="profile">
+  <h2>{{review.title}}</h2>
+  <p>{{review.review_content}}</p>
+</div>
+  {{/each}}
+  {{/if}}
+  {{/each}}
+</main> --}}
+
+<div id="userProfile" class="container card col-3">
+  <div class="card-header">
+    {{#each displayData as |review|}}
+      <div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Title:
+            {{review.title}}
+            (id:
+            {{review.id}})</li>
+          <li class="list-group-item">Review: {{review.review_content}}</li>
+          <li class="list-group-item">Date: {{review.created_at}}</li>
+        </ul>
+        <hr />
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+{{!-- <section>
+  <h2>Your Posts</h2>
+  <ol>
+    {{#each posts as |post|}}
+    <li>
+      {{> post-info post}}
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+    </li>
+    {{/each}}
+</ol>
+</section> --}}

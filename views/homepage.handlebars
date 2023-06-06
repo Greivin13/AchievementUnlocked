@@ -1,0 +1,33 @@
+<div class="card container">
+  {{#each reviews as |review|}}
+    {{#if review.reviews}}
+      {{#each review.reviews as |review|}}
+        <h1>{{review.reviews.user.username}}</h1>
+        <h2>{{review.title}}</h2>
+        <hr />
+        <p>{{review.review_content}}</p>
+      {{/each}}
+    {{/if}}
+  {{/each}}
+</div>
+
+{{!-- <div id="userProfile" class="container card col-3">
+  <div class="card-header">
+    {{#each reviews as |review|}}
+      {{#if review.reviews}}
+        {{#each review.reviews as |review|}}
+          <div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Title:
+                {{review.title}}
+              </li>
+              <li>{{review.username}}</li>
+              <li class="list-group-item">Review: {{review.review_content}}</li>
+            </ul>
+            <hr />
+          </div>
+        {{/each}}
+      {{/if}}
+    {{/each}}
+  </div>
+</div> --}}
