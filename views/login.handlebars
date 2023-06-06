@@ -1,26 +1,27 @@
-<button id="homeBtn" class="btn btn-primary m-4 align-right">Home</button>
 <div class="form-signin container col-3 text-center">
-  <form id="login-form">
+  <form id="loginForm" action="/api/users/login" method="POST">
     <img class="my-4 w-100" src="https://i.imgur.com/Mt6nYs0.png" alt="logo" />
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
       <input
+        name="email"
         type="email"
         class="form-control"
         id="email-login"
         placeholder="name@example.com"
       />
-      <label for="floatingInput">Email address</label>
+      <label for="email-login">Email address</label>
     </div>
     <div class="form-floating">
       <input
+        name="password"
         type="password"
         class="form-control"
         id="password-login"
         placeholder="Password"
       />
-      <label for="floatingPassword">Password</label>
+      <label for="password-login">Password</label>
     </div>
 
     {{! <div class="checkbox m-4">
@@ -28,12 +29,17 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div> }}
-    <button class="mt-3 w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <button
+      id="loginBtn"
+      class="mt-3 w-100 btn btn-lg btn-primary"
+      type="submit"
+    >Sign in</button>
     <div class="text-center mt-4">
       <p>Don't have an account?</p>
-      <button id="signupBtn" class="btn btn-primary">Sign up</button>
+      <button id="signupNav" class="btn m-4">
+        <a href="/sign-up">Sign up</a></button>
     </div>
   </form>
 </div>
 
-{{!-- <script src="/js/login.js"></script> --}}
+{{! <script src="/js/login.js"></script> }}
