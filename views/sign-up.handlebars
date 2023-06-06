@@ -1,10 +1,21 @@
 <div class="form-signin container col-3 text-center">
-  <form>
+  <form id="signupForm" action="/api/users" method="POST">
     <img class="my-4 w-100" src="https://i.imgur.com/Mt6nYs0.png" alt="logo" />
     <h1 class="h3 mb-3 fw-normal">Create an account</h1>
 
     <div class="form-floating">
       <input
+        name="username"
+        type="text"
+        class="form-control"
+        id="usernameInput"
+        placeholder="username"
+      />
+      <label for="usernameInput">Username</label>
+    </div>
+    <div class="form-floating">
+      <input
+        name="email"
         type="email"
         class="form-control"
         id="email-signup"
@@ -14,6 +25,7 @@
     </div>
     <div class="form-floating">
       <input
+        name="password"
         type="password"
         class="form-control"
         id="password-signup"

@@ -5,8 +5,8 @@ router.get("/", (req, res) => {
   User.findAll({
     attributes: { exclude: ["password"] },
   })
-    .then(userData => res.json(userData))
-    .catch(err => {
+    .then((userData) => res.json(userData))
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -45,14 +45,14 @@ router.get("/:id", (req, res) => {
       },
     ],
   })
-    .then(userData => {
+    .then((userData) => {
       if (!userData) {
         res.status(404).json({ message: "No User found containing this id" });
         return;
       }
       res.json(userData);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
@@ -64,48 +64,50 @@ router.post("/", (req, res) => {
     email: req.body.email,
     password: req.body.password,
   })
-    .then(userData => {
+    .then((userData) => {
       req.session.save(() => {
         req.session.user_id = userData.id;
         req.session.username = userData.username;
         req.session.loggedIn = true;
 
-        res.json(userData);
+        res.redirect(303, "/");
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
 });
 
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData) {
+      res.redirect(303, "/login?invalid=true");
+      return;
+      // NOTE: THE BELOW RES DOESNT RUN
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
+        .json({ message: "Incorrect email or password, please try again" });
     }
 
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
+      res.redirect(303, "/login?invalid=true");
+      return;
+      // NOTE: THE BELOW RES DOESNT RUN
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
+        .json({ message: "Incorrect email or password, please try again" });
     }
 
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
+      res.redirect(303, "/");
     });
-
   } catch (err) {
     res.status(400).json(err);
   }
@@ -128,14 +130,14 @@ router.put("/:id", (req, res) => {
       id: req.params.id,
     },
   })
-    .then(userData => {
+    .then((userData) => {
       if (!userData) {
         res.status(404).json({ message: "No user found containing this id" });
         return;
       }
       res.json(userData);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
