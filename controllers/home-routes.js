@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
   try {
     const user_materials = await User.findAll({
       attributes: {
-        exclude: ["id", "username", "email", "password"],
+        exclude: ["id", "email", "password"],
       },
       include: [{ model: Review }, { model: Post }],
     });
@@ -33,62 +33,6 @@ router.get("/", async (req, res) => {
     res.status(400).json(err);
   }
 });
-
-// Post.findAll({
-//   attributes: ["id", "post_content", "title", "created_at"],
-//   include: [
-//     {
-//       model: Comment,
-//       attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-//       include: {
-//         model: User,
-//         attributes: ["username"],
-//       },
-//     },
-//   ],
-// })
-//   .then((postData) => {
-//     const posts = postData.map((post) => post.get({ plain: true }));
-//     console.log(req.session.username);
-//     res.render("homepage", {
-//       posts,
-//       loggedIn: req.session.loggedIn,
-//       scripts: scripts,
-//     });
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//     res.status(500).json(err);
-//   });
-
-// router.get("/Discussion", (req, res) => {
-//   console.log("New Request Recieved!");
-//   Post.findAll({
-//     attributes: ["id", "post_content", "title", "created_at"],
-//     include: [
-//       {
-//         model: Comment,
-//         attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-//         include: {
-//           model: User,
-//           attributes: ["username"],
-//         },
-//       },
-//     ],
-//   })
-//     .then(postData => {
-//       const posts = postData.map((post) => post.get({ plain: true }));
-
-//       res.render("discussion", {
-//         posts,
-//         loggedIn: req.session.loggedIn,
-//       });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
 
 // // const test = [
 // //   {
@@ -129,46 +73,6 @@ router.get("/profile", async (req, res) => {
         exclude: ["password", "email", "id"],
       },
       include: [{ model: Review }, { model: Post }],
-
-      // router.get("/profile", (req, res) => {
-      //   console.log("New Request Recieved!");
-      //   Review.findAll({
-      //     attributes: ["id", "review_content", "title", "created_at"],
-      //     include: [
-      //       {
-      //         model: revComment,
-      //         attributes: [
-      //           "id",
-      //           "revComment_text",
-      //           "review_id",
-      //           "user_id",
-      //           "created_at",
-      //         ],
-      //         include: {
-      //           model: User,
-      //           attributes: ["username"],
-      //         },
-      //       },
-      //     ],
-      //   })
-      //     .then((reviewData) => {
-      //       // const reviews = reviewData.map((review) => review.get({ plain: true }));
-      //       // for (let i = 0; i < reviewData.length; i++) {
-      //       //   console.log(reviewData[i]);
-      //       // }
-      //       let displayData = {};
-      //       reviewData.forEach((review) => {
-      //         // displayData.push(review.get({ plain: true }));
-      //         displayData[review.get({ plain: true }).id] = review.get({
-      //           plain: true,
-      //         });
-      //       });
-      //       console.log(displayData);
-      //       res.render("profile", displayData);
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //       res.status(500).json(err);
     });
     const loggedIn = req.session.logged_in;
     const user = req.session.user_id;
@@ -184,39 +88,6 @@ router.get("/profile", async (req, res) => {
     res.status(400).json(err);
   }
 });
-
-//   User.findAll({
-//     attributes: ["id", "review_content", "title", "created_at"],
-//     include: [
-//       {
-//         model: revComment,
-//         attributes: [
-//           "id",
-//           "revComment_text",
-//           "review_id",
-//           "user_id",
-//           "created_at",
-//         ],
-//         include: {
-//           model: User,
-//           attributes: ["username"],
-//         },
-//       },
-//     ],
-//   })
-//     .then((reviewData) => {
-//       // const reviews = reviewData.map((review) => review.get({ plain: true }));
-
-//       res.render("profile", {
-//         reviews: reviewData[0].title,
-//         loggedIn: req.session.loggedIn,
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
 
 router.get("/post/:id", (req, res) => {
   Post.findOne({
@@ -271,6 +142,18 @@ router.get("/sign-up", (req, res) => {
 
   res.render("sign-up", {
     title: "Sign-up",
+    scripts: scripts,
+  });
+});
+
+router.get("/create-review", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+
+  res.render("create-review", {
+    title: "create-review",
     scripts: scripts,
   });
 });

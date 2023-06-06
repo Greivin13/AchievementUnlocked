@@ -6,7 +6,7 @@ $("#newsBtn").click(function (e) {
   e.preventDefault();
   document.location.replace("/news");
 });
-$("#discussionBtn").click(function (e) {
+$("#createReviewBtn").click(function (e) {
   e.preventDefault();
-  document.location.replace("/forum");
+  document.location.replace("/create-review");
 });
