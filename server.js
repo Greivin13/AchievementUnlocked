@@ -5,7 +5,7 @@ const routes = require("./controllers");
 const sequelize = require("./config/connection.js");
 const exphbs = require("express-handlebars");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-
+const axios = require("axios");
 
 const SteamAPI = require('steamapi');
 require('dotenv').config();
@@ -37,7 +37,7 @@ app.use(session(sess));
 
 const helpers = require("./utils/helpers");
 
-const hbs = exphbs.create ({ helpers });
+const hbs = exphbs.create({ helpers });
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
@@ -54,8 +54,7 @@ sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
     console.log(`Now listening\nhttp://localhost:${PORT}`)
   );
-// FIXME: CHANGE TO FALSE LATER
-
+}); // <-- Add closing brace here
 
 app.get("/", async (request, response) => {
   const steamID = '76561199036046793'; // Replace with the desired Steam ID
@@ -103,9 +102,3 @@ steam.getUserSummary('76561199036046793').then(summary => {
   //   // console.log(res.json(playerData));
   //   // response.render("profile", { playerData: playerData });
   // });
-  sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () =>
-      console.log(`Now listening\nhttp://localhost:${PORT}`)
-    );
-  });
-
