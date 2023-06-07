@@ -68,27 +68,6 @@ sequelize.sync({ force: false }).then(() => {
 //     res.status(500).json({ error: 'An error occurred' });
 //   }
 // });
-app.get('/steamProfile', async (req, res) => {
-  const steamID = req.query.steamID;
-
-  try {
-    // Use the steamapi package to fetch the user profile data using the provided Steam ID
-    const playerData = await steam.getUserSummary(steamID);
-    
-    const userProfile = {
-      personaname: playerData.personaname,
-      avatarfull: playerData.avatarfull,
-      steamid: playerData.steamid,
-      profileurl: playerData.profileurl,
-      // Add more properties as needed
-    };
-
-    res.render("steamProfile", { userProfile });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "An error occurred" });
-  }
-});
 
 
 app.get('/steamMembers', async (req, res) => {
@@ -128,20 +107,20 @@ app.get('/steamMembers', async (req, res) => {
 });
 
 
-app.get("/steamData", async (request, response) => {
-  const steamID = '76561199036046793'; // Replace with the desired Steam ID
+// app.get("/steamData", async (request, response) => {
+//   const steamID = '76561199036046793'; // Replace with the desired Steam ID
 
-  try {
-    const queryUrl = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID}`;
-    const apiResponse = await axios.get(queryUrl);
-    const playerData = apiResponse.data.response.players[0];
+//   try {
+//     const queryUrl = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID}`;
+//     const apiResponse = await axios.get(queryUrl);
+//     const playerData = apiResponse.data.response.players[0];
 
-    response.render("profile", { playerData });
-  } catch (error) {
-    console.error(error);
-    response.status(500).json({ error: 'An error occurred' });
-  }
-});
+//     response.render("profile", { playerData });
+//   } catch (error) {
+//     console.error(error);
+//     response.status(500).json({ error: 'An error occurred' });
+//   }
+// });
 
 
 steam.resolve('https://steamcommunity.com/profiles/76561199036046793/').then(id => {
