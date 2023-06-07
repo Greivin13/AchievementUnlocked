@@ -114,7 +114,43 @@ h1 {
   font-weight: 900;
 }
 
+input#email-login.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#usernameinput.form-control{
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#email-signup.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#password-signup.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#passwordConfirmation-signup.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
 input#titleinput.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#password-login.form-control {
   color: #ce422b;
   font-size: 20px;
   font-weight: 900;
@@ -157,10 +193,41 @@ input:hover {
 
 }
 
+button#signupBtn.mt-3.w-100.btn.btn-lg.btn-success {
+  background-color: #ce422b;
+}
+
+button#signupBtn.mt-3.w-100.btn.btn-lg.btn-success:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+button#signupNav.btn.m-4.success {
+  background-color: #ce422b;
+}
+
+button#loginNav.btn.m-4 {
+  background-color: #ce422b;
+  text-decoration: none;
+}
+
+button#signupNav.btn.m-4.success:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
 
 button#submitReviewBtn.mt-3.w-50.text-center.btn.btn-lg.btn-success {
   background-color: #ce422b;
 }
+
+button#submitReviewBtn.mt-3.w-50.text-center.btn.btn-lg.btn-success:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+button#loginNav.btn.m-4:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+
 
 button#submitReviewBtn.mt-3.w-50.text-center.btn.btn-lg.btn-success:hover {
   box-shadow: 2px 2px 4px 7px #f6eae0;
