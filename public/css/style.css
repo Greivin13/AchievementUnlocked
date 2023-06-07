@@ -3,10 +3,99 @@
 *::after {
   box-sizing: border-box;
 }
-
-#signupBtn {
-  display: flex;
-  flex-direction: column;
-  justify-content: right;
-  font-size: 50px;
+body{
+ background: linear-gradient(to top, #d4d1d1, #777777);
+font-family: 'Quicksand';
 }
+
+@media screen and (max-width: 768px){
+  #achievement {
+    padding: 0 50px;
+  }
+#loginForm,
+#signupForm{
+align-items: flex-start;
+}
+
+  input.form-control {
+    width: 100%;
+  }
+
+  textarea.form-control {
+    width: 100%;
+  }
+
+  #usernameInput,
+  #email-signup,
+  #password-signup,
+  #passwordConfirmation-signup,
+  #email-login,
+  #password-login {
+    width: 50%;
+    margin-bottom: 10px;
+  }
+}
+
+.navbar {
+  background-color: #333;
+  color: #777777;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar .btn {
+  margin: 5px;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.navbar-nav a {
+  color: #777777; 
+  text-decoration: none;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-nav a:hover {
+  color: #ffffff; 
+}
+
+#achievement{
+  font-size: 35px;
+  line-height: 80px;
+  padding: 0 100px;
+  font-weight: bold;
+  color: linear-gradient(to right, limegreen, grey);
+}
+
+.btn-primary {
+  margin-left: auto;
+}
+
+input.form-control {
+  width: 500px; 
+  height: 30px; 
+}
+textarea.form-control {
+  width: 700px; 
+  height: 100px; 
+}
+#createReviewForm{
+  align-items: center;
+}
+#usernameInput,
+#email-signup,
+#password-signup,
+#passwordConfirmation-signup,
+#password-login,
+#email-login{
+  width: 350px;
+}
+.card{
+    background-color: #006400; 
+    color: #ffffff; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+  }
