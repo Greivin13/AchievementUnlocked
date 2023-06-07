@@ -55,21 +55,25 @@ align-items: flex-start;
 button#homeBtn.btn.m-4:hover {
   box-shadow: 2px 2px 4px 7px #ce422b;
   padding: 10px;
+  background-color: #f6eae0;
 }
 
 button#profileBtn.btn.m-4:hover {
   box-shadow: 2px 2px 4px 7px #ce422b;
   padding: 10px;
+  background-color: #f6eae0;
 }
 
 button#newsBtn.btn.m-4:hover {
   box-shadow: 2px 2px 4px 7px #ce422b;
   padding: 10px;
+  background-color: #f6eae0;
 }
 
 button#createReviewBtn.btn.m-4:hover {
   box-shadow: 2px 2px 4px 7px #ce422b;
   padding: 10px;
+  background-color: #f6eae0;
 }
 
 a {
@@ -134,8 +138,6 @@ nav.navbar.navbar-expand-md.bg-body-tertiary.my-5 {
   box-shadow: 2px 2px 4px 7px #ce422b;
 }
 
-
-
 .navbar {
   background-color: #1e2020;
   color: #ce422b;
@@ -150,11 +152,24 @@ nav.navbar.navbar-expand-md.bg-body-tertiary.my-5 {
   transition: background-color 0.3s;
 }
 
+input:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+
+}
+
+
 button#submitReviewBtn.mt-3.w-50.text-center.btn.btn-lg.btn-success {
   background-color: #ce422b;
 }
 
 button#submitReviewBtn.mt-3.w-50.text-center.btn.btn-lg.btn-success:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+button#loginBtn.mt-3.w-100.btn.btn-lg.btn-success {
+  background-color: #ce422b;
+}
+button#loginBtn.mt-3.w-100.btn.btn-lg.btn-success:hover {
   box-shadow: 2px 2px 4px 7px #f6eae0;
 }
 
@@ -179,14 +194,6 @@ p {
 
 .navbar-nav a:hover {
   color: 	#ce422b; 
-}
-
-#achievement{
-  font-size: 35px;
-  line-height: 80px;
-  padding: 0 100px;
-  font-weight: bold;
-  color: linear-gradient(to right, limegreen, grey);
 }
 
 .btn-primary {
