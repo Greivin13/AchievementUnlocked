@@ -1,9 +1,9 @@
 const path = require("path");
 
-const SteamAPI = require('steamapi');
+const steamAPI = require('steamapi');
 require('dotenv').config();
 
-const steam = new SteamAPI(process.env.API_KEY);
+const steam = new steamAPI(process.env.API_KEY);
 const express = require("express");
 const session = require("express-session");
 const routes = require("./controllers");
