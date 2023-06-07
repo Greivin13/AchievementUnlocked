@@ -77,11 +77,6 @@ a {
   color:	#f6eae0;
 }
 
-a:hover {
-  border: solid 1px #1e2020;
-  box-shadow: 2px 2px 3px 4px #f6eae0;
-}
-
 h1#achievement.text-center:hover {
   box-shadow: 20px 20px 40px 70px #ce422b;
 }
