@@ -4,9 +4,293 @@
   box-sizing: border-box;
 }
 
-#signupBtn {
-  display: flex;
-  flex-direction: column;
-  justify-content: right;
-  font-size: 50px;
+button#loginBtn.btn.btn-primary.m-4.align-right {
+  background-color: #1e2020;
 }
+button#loginBtn.btn.btn-primary.m-4.align-right:hover {
+  background-color: #ce422b;
+}
+
+a.btn.btn-success:hover {
+  background-color: #ce422b;
+}
+a.btn.btn-success {
+  background-color: #1e2020;
+  box-shadow: 2px 2px 4px 7px #ce422b;
+}
+
+body{
+ background-color: gray;
+font-family: 'Quicksand';
+}
+
+@media screen and (max-width: 768px){
+  #achievement {
+    padding: 0 50px;
+  }
+#loginForm,
+#signupForm{
+align-items: flex-start;
+}
+
+  input.form-control {
+    width: 100%;
+  }
+
+  textarea.form-control {
+    width: 100%;
+  }
+
+  #usernameInput,
+  #email-signup,
+  #password-signup,
+  #passwordConfirmation-signup,
+  #email-login,
+  #password-login {
+    width: 50%;
+    margin-bottom: 10px;
+  }
+}
+
+button#homeBtn.btn.m-4:hover {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+  padding: 10px;
+  background-color: #f6eae0;
+}
+
+button#profileBtn.btn.m-4:hover {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+  padding: 10px;
+  background-color: #f6eae0;
+}
+
+button#newsBtn.btn.m-4:hover {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+  padding: 10px;
+  background-color: #f6eae0;
+}
+
+button#createReviewBtn.btn.m-4:hover {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+  padding: 10px;
+  background-color: #f6eae0;
+}
+
+a {
+  font-size: 20px;
+  color:	#f6eae0;
+}
+
+h1#achievement.text-center {
+  box-shadow: 20px 20px 40px 70px #1e2020;
+  color:#1e2020;
+  font-size: 42px;
+  font-weight: 900;
+  text-decoration: solid ;
+}
+
+img {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+}
+
+li {
+  font-size: 23px;
+  color: #1e2020;
+  font-weight: 900;
+  max-width: fit-content;
+}
+
+
+h2 {
+  font-size: 26px;
+  color: #ce422b;
+  text-decoration: underline;
+  font-weight: 900;
+}
+
+h1 {
+  color: #1e2020;
+  font-size: 42px;
+  font-weight: 900;
+}
+
+input#email-login.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#usernameinput.form-control{
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#email-signup.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#password-signup.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#passwordConfirmation-signup.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#titleinput.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#password-login.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+textarea#reviewinput.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#titleinput.form-control:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+textarea#reviewinput.form-control:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+nav.navbar.navbar-expand-md.bg-body-tertiary.my-5 {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+}
+
+.navbar {
+  background-color: #1e2020;
+  color: #ce422b;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar .btn {
+  margin: 5px;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+input:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+
+}
+
+button#signupBtn.mt-3.w-100.btn.btn-lg.btn-success {
+  background-color: #ce422b;
+}
+
+button#signupBtn.mt-3.w-100.btn.btn-lg.btn-success:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+button#signupNav.btn.m-4.success {
+  background-color: #ce422b;
+}
+
+button#loginNav.btn.m-4 {
+  background-color: #ce422b;
+  text-decoration: none;
+}
+
+button#signupNav.btn.m-4.success:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+
+button#submitReviewBtn.mt-3.w-50.text-center.btn.btn-lg.btn-success {
+  background-color: #ce422b;
+}
+
+button#submitReviewBtn.mt-3.w-50.text-center.btn.btn-lg.btn-success:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+button#loginNav.btn.m-4:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+
+
+button#submitReviewBtn.mt-3.w-50.text-center.btn.btn-lg.btn-success:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+button#loginBtn.mt-3.w-100.btn.btn-lg.btn-success {
+  background-color: #ce422b;
+}
+button#loginBtn.mt-3.w-100.btn.btn-lg.btn-success:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+h2 {
+  color: 	#ce422b;
+  font-size: 32px;
+  font weight: 900;
+}
+
+p {
+  color:	#ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.navbar-nav a {
+  color: 	#ce422b; 
+  text-decoration: none;
+  font-size: 25px;
+  background-color: transparent;
+}
+
+.navbar-nav a:hover {
+  color: 	#ce422b; 
+}
+
+.btn-primary {
+  margin-left: auto;
+}
+
+input.form-control {
+  width: 500px; 
+  height: 30px; 
+}
+textarea.form-control {
+  width: 700px; 
+  height: 100px; 
+}
+#createReviewForm{
+  align-items: center;
+}
+#usernameInput,
+#email-signup,
+#password-signup,
+#passwordConfirmation-signup,
+#password-login,
+#email-login{
+  width: 350px;
+}
+div.card.container{
+    background-color: #1e2020; 
+    color: gray; 
+    
+    box-shadow: 12px 12px 14px 17px #ce422b;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+  }
