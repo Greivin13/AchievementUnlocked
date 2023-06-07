@@ -7,6 +7,7 @@ const logout = async () => {
   if (response.ok) {
     document.location.replace("/");
   } else {
+    console.log("Failed to log out");
     alert(response.statusText);
   }
 };
