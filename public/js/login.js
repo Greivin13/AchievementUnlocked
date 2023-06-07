@@ -15,6 +15,10 @@ function signupFormHandler() {
     .querySelector("#passwordConfirmation-signup")
     .value.trim();
 
+  //   email = new Date() + "@example.com";
+  // password = "" + new Date();
+  // passwordConfirmation = "" + new Date();
+
   // check to ensure all parameters are filled out
   if (!username || !email || !password || !passwordConfirmation) {
     return false;
