@@ -24,6 +24,3 @@ async function newReviewHandler(event) {
   }
 }
 
-// document
-//   .querySelector(".new-review-form")
-//   .addEventListener("submit", newReviewHandler);

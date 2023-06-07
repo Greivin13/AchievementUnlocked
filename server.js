@@ -57,17 +57,6 @@ sequelize.sync({ force: false }).then(() => {
   );
 }); 
 
-// app.get('/news/:appid', async (req, res) => {
-//   const appid = req.params.appid;
-//   try {
-//     const newsItems = await steam.getNewsForApp(appid, 5);
-
-//     res.render('news', { newsItems });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'An error occurred' });
-//   }
-// });
 
 
 app.get('/steamMembers', async (req, res) => {
@@ -107,50 +96,12 @@ app.get('/steamMembers', async (req, res) => {
 });
 
 
-// app.get("/steamData", async (request, response) => {
-//   const steamID = '76561199036046793'; // Replace with the desired Steam ID
-
-//   try {
-//     const queryUrl = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID}`;
-//     const apiResponse = await axios.get(queryUrl);
-//     const playerData = apiResponse.data.response.players[0];
-
-//     response.render("profile", { playerData });
-//   } catch (error) {
-//     console.error(error);
-//     response.status(500).json({ error: 'An error occurred' });
-//   }
-// });
-
-
 steam.resolve('https://steamcommunity.com/profiles/76561199036046793/').then(id => {
   console.log(id); // 76561198146931523
 });
-// steam.resolve('http://steamcommunity.com/profiles/76561197962122587').then(id => {
-//   console.log(id); // 76561198146931523
-// });
 
-// steam.resolve('http://steamcommunity.com/profiles/76561198947331366').then(id => {
-//   console.log(id); // 76561198146931523
-// });
 
 
 steam.getUserSummary('76561199036046793').then(summary => {
   console.log(summary); // 76561198146931523
 })
-
-// steam.getUserSummary('76561197962122587').then(summary => {
-//   console.log(summary); // 76561198146931523
-
-// steam.getUserSummary('76561198947331366').then(summary => {
-  // console.log(summary); // 76561198146931523
-// app.get("/steamData", async (request, response) => {
-  //   const requestParam = request.params.steamID;
-  //   // const playerDataRequest = requestParam;
-  //   const queryUrl = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.steamkey}&steamids=${process.env.rinSteam64ID}`;
-  //   const fetch_response = await fetch(queryUrl);
-  //   const playerData = await fetch_response.json();
-  //   response.json(playerData);
-  //   // console.log(res.json(playerData));
-  //   // response.render("profile", { playerData: playerData });
-  // });
