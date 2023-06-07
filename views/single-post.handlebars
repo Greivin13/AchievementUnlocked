@@ -1,11 +1,24 @@
-<div id="post" class="container card">
-    <h1 id="postTitle">{{Post.title}}</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Posts</title>
+</head>
+<body>
+  <h1>Posts</h1>
+  
+  {{#each posts}}
+  <div id="post" class="container card">
+    <h1 id="postTitle">{{title}}</h1>
     <section id="postContent" class="container">
         <div>
-            <p>{{Post.post_content}}</p>
+            <p>{{post_content}}</p>
         </div>
         <div id="userProfileInfo" class="container">
-            <p>{{Post.author}}</p>
+            <p>{{author}}</p>
         </div>
     </section>
-</div>
+  </div>
+  {{/each}}
+  
+</body>
+</html>
