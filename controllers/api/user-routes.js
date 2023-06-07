@@ -72,27 +72,28 @@ router.post("/", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+  try {
+    User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    })
+      .then((userData) => {
+        req.session.save(() => {
+          req.session.user_id = userData.id;
+          req.session.username = userData.username;
+          req.session.loggedIn = true;
+        });
+        res.redirect(303, "/");
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
-// router.post("/", (req, res) => {
-//   User.create({
-//     username: req.body.username,
-//     email: req.body.email,
-//     password: req.body.password,
-//   })
-//     .then((userData) => {
-//       req.session.save(() => {
-//         req.session.user_id = userData.id;
-//         req.session.username = userData.username;
-//         req.session.loggedIn = true;
-
-//         res.redirect(303, "/");
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
 
 router.post("/login", async (req, res) => {
   try {
@@ -101,10 +102,6 @@ router.post("/login", async (req, res) => {
     if (!userData) {
       res.redirect(303, "/login?invalid=true");
       return;
-      // NOTE: THE BELOW RES DOESNT RUN
-      res
-        .status(400)
-        .json({ message: "Incorrect email or password, please try again" });
     }
 
     const validPassword = await userData.checkPassword(req.body.password);
@@ -112,10 +109,6 @@ router.post("/login", async (req, res) => {
     if (!validPassword) {
       res.redirect(303, "/login?invalid=true");
       return;
-      // NOTE: THE BELOW RES DOESNT RUN
-      res
-        .status(400)
-        .json({ message: "Incorrect email or password, please try again" });
     }
 
     req.session.save(() => {

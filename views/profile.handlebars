@@ -11,7 +11,21 @@
   {{/each}}
 </main> --}}
 
-<div id="userProfile" class="container card col-3">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Profile</title>
+</head>
+<body>
+  <h1>User Profile</h1>
+  <h2>{{ playerData.personaname }}</h2>
+  <img src="{{ playerData.avatarfull }}" alt="Profile Picture">
+  <p>Steam ID: {{ playerData.steamid }}</p>
+  <p>Profile URL: {{ playerData.profileurl }}</p>
+  <!-- Add more profile details as needed -->
+</body>
+</html>
+{{!-- <div id="userProfile" class="container card col-3">
   <div class="card-header">
     {{#each displayData as |review|}}
       <div>
@@ -27,7 +41,7 @@
       </div>
     {{/each}}
   </div>
-</div>
+</div>  --}}
 
 {{!-- <section>
   <h2>Your Posts</h2>

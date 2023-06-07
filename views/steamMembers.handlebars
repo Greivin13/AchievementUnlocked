@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Steam Members</title>
+</head>
+<body>
+  <h1>Founding Fathers</h1>
+  <ul>
+    {{#each memberSummaries}}
+    <li>
+      <h2>{{personaname}}</h2>
+      <ul>
+        <li>Steam ID: {{steamid}}</li>
+        <li>Display Name: {{personaname}}</li>
+        <li>Profile URL: {{profileurl}}</li>
+        <li>Avatar Image: <img src="{{avatarfull}}" alt="Avatar"></li>
+      </ul>
+      <!-- Add more fields as needed -->
+    </li>
+    {{/each}}
+  </ul>
+</body>
+</html>
