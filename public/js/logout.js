@@ -5,7 +5,6 @@ const logout = async () => {
   });
 
   if (response.ok) {
-    console.log("Successfully logged out, " + username)
     document.location.replace("/");
   } else {
     console.log("Failed to log out");
