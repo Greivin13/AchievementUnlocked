@@ -1,10 +1,9 @@
 # AchievementUnlocked
 
-![Screenshot of login page]()
+## Screenshot of Login Page
+<img width="1280" alt="project_2_login" src="https://github.com/Greivin13/AchievementUnlocked/assets/123614404/0bcefa0b-9bb2-4a30-8d6b-cfa98465d54d">
 
-<img width="2560" alt="2023-06-07 (1)" src="https://github.com/Greivin13/AchievementUnlocked/assets/123614404/599b302d-118b-4385-a918-94acd3cac537">
-
-![Screenshot of home page]()
+## Screenshot of Home Page
 <img width="1268" alt="rust_project_2" src="https://github.com/Greivin13/AchievementUnlocked/assets/123614404/f0e66872-7e1c-4c97-8229-9fbdb293e894">
 
 ## Description
