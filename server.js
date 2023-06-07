@@ -63,24 +63,28 @@ app.get('/steamMembers', async (req, res) => {
   const steamID1 = '76561198054586238';
   const steamID2 = '76561198947331366';
   const steamID3 = '76561198289182228';
+  const steamID4 = '76561199227392699';
 
   try {
     const queryUrl1 = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID}`;
     const queryUrl2 = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID1}`;
     const queryUrl3 = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID2}`;
     const queryUrl4 = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID3}`;
+    const queryUrl5 = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.API_KEY}&steamids=${steamID4}`;
     const apiResponse1 = await axios.get(queryUrl1);
     const apiResponse2 = await axios.get(queryUrl2);
     const apiResponse3 = await axios.get(queryUrl3);
     const apiResponse4 = await axios.get(queryUrl4);
+    const apiResponse5 = await axios.get(queryUrl5);
     const playerData1 = apiResponse1.data.response.players[0];
     const playerData2 = apiResponse2.data.response.players[0];
     const playerData3 = apiResponse3.data.response.players[0];
     const playerData4 = apiResponse4.data.response.players[0];
+    const playerData5 = apiResponse5.data.response.players[0];
 
     // Create an array and push the playerData objects
     const memberSummaries = [];
-    memberSummaries.push(playerData1, playerData2, playerData3, playerData4);
+    memberSummaries.push(playerData1, playerData2, playerData3, playerData4, playerData5);
 
     // Render the "steamMembers" view with the memberSummaries data
     res.render('steamMembers', { memberSummaries });

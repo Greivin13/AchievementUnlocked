@@ -3,8 +3,24 @@
 *::after {
   box-sizing: border-box;
 }
+
+button#loginBtn.btn.btn-primary.m-4.align-right {
+  background-color: #1e2020;
+}
+button#loginBtn.btn.btn-primary.m-4.align-right:hover {
+  background-color: #ce422b;
+}
+
+a.btn.btn-success:hover {
+  background-color: #ce422b;
+}
+a.btn.btn-success {
+  background-color: #1e2020;
+  box-shadow: 2px 2px 4px 7px #ce422b;
+}
+
 body{
- background: linear-gradient(to top, #d4d1d1, #777777);
+ background-color: gray;
 font-family: 'Quicksand';
 }
 
@@ -36,9 +52,102 @@ align-items: flex-start;
   }
 }
 
+button#homeBtn.btn.m-4:hover {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+  padding: 10px;
+}
+
+button#profileBtn.btn.m-4:hover {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+  padding: 10px;
+}
+
+button#newsBtn.btn.m-4:hover {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+  padding: 10px;
+}
+
+button#createReviewBtn.btn.m-4:hover {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+  padding: 10px;
+}
+
+a {
+  font-size: 20px;
+  color:	#f6eae0;
+}
+
+a:hover {
+  border: solid 1px #1e2020;
+  box-shadow: 2px 2px 3px 4px #f6eae0;
+}
+
+h1#achievement.text-center:hover {
+  box-shadow: 20px 20px 40px 70px #ce422b;
+}
+
+h1#achievement.text-center {
+  box-shadow: 20px 20px 40px 70px #1e2020;
+  color:#1e2020;
+  font-size: 42px;
+  font-weight: 900;
+  text-decoration: solid ;
+}
+
+img {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+}
+
+li {
+  font-size: 23px;
+  color: #1e2020;
+  font-weight: 900;
+  max-width: fit-content;
+}
+
+
+h2 {
+  font-size: 26px;
+  color: #ce422b;
+  text-decoration: underline;
+  font-weight: 900;
+}
+
+h1 {
+  color: #1e2020;
+  font-size: 42px;
+  font-weight: 900;
+}
+
+input#titleinput.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+textarea#reviewinput.form-control {
+  color: #ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+input#titleinput.form-control:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+textarea#reviewinput.form-control:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+nav.navbar.navbar-expand-md.bg-body-tertiary.my-5 {
+  box-shadow: 2px 2px 4px 7px #ce422b;
+}
+
+
+
 .navbar {
-  background-color: #333;
-  color: #777777;
+  background-color: #1e2020;
+  color: #ce422b;
   padding: 10px;
   display: flex;
   justify-content: center;
@@ -50,15 +159,35 @@ align-items: flex-start;
   transition: background-color 0.3s;
 }
 
+button#submitReviewBtn.mt-3.w-50.text-center.btn.btn-lg.btn-success {
+  background-color: #ce422b;
+}
+
+button#submitReviewBtn.mt-3.w-50.text-center.btn.btn-lg.btn-success:hover {
+  box-shadow: 2px 2px 4px 7px #f6eae0;
+}
+
+h2 {
+  color: 	#ce422b;
+  font-size: 32px;
+  font weight: 900;
+}
+
+p {
+  color:	#ce422b;
+  font-size: 20px;
+  font-weight: 900;
+}
+
 .navbar-nav a {
-  color: #777777; 
+  color: 	#ce422b; 
   text-decoration: none;
+  font-size: 25px;
   background-color: transparent;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar-nav a:hover {
-  color: #ffffff; 
+  color: 	#ce422b; 
 }
 
 #achievement{
@@ -92,10 +221,11 @@ textarea.form-control {
 #email-login{
   width: 350px;
 }
-.card{
-    background-color: #006400; 
-    color: #ffffff; 
-    padding: 20px;
+div.card.container{
+    background-color: #1e2020; 
+    color: gray; 
+    
+    box-shadow: 12px 12px 14px 17px #ce422b;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
   }
