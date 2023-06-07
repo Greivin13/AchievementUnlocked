@@ -57,39 +57,6 @@ sequelize.sync({ force: false }).then(() => {
   );
 }); 
 
-// app.get('/news/:appid', async (req, res) => {
-//   const appid = req.params.appid;
-//   try {
-//     const newsItems = await steam.getNewsForApp(appid, 5);
-
-//     res.render('news', { newsItems });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'An error occurred' });
-//   }
-// });
-app.get('/steamProfile', async (req, res) => {
-  const steamID = req.query.steamID;
-
-  try {
-    // Use the steamapi package to fetch the user profile data using the provided Steam ID
-    const playerData = await steam.getUserSummary(steamID);
-    
-    const userProfile = {
-      personaname: playerData.personaname,
-      avatarfull: playerData.avatarfull,
-      steamid: playerData.steamid,
-      profileurl: playerData.profileurl,
-      // Add more properties as needed
-    };
-
-    res.render("steamProfile", { userProfile });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "An error occurred" });
-  }
-});
-
 
 app.get('/steamMembers', async (req, res) => {
   const steamID = '76561199036046793'; // Replace with the desired Steam ID
@@ -143,14 +110,6 @@ app.get("/steamData", async (request, response) => {
 steam.resolve('https://steamcommunity.com/profiles/76561199036046793/').then(id => {
   console.log(id); // 76561198146931523
 });
-// steam.resolve('http://steamcommunity.com/profiles/76561197962122587').then(id => {
-//   console.log(id); // 76561198146931523
-// });
-
-// steam.resolve('http://steamcommunity.com/profiles/76561198947331366').then(id => {
-//   console.log(id); // 76561198146931523
-// });
-
 
 steam.getUserSummary('76561199036046793').then(summary => {
   console.log(summary); // 76561198146931523
